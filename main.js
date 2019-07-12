@@ -1,12 +1,13 @@
 let Phrase = require("dnaida-palindrome"); 
 
-function palindromeTester() {
-    let string = prompt("Please enter a string for a palindrome testing:")
-    let phrase = new Phrase(string); 
+function palindromeTester(event) {
+    event.preventDefault(); 
+    
+    let phrase = new Phrase(event.target.phrase.value); 
 
-    let palindromeResult = document.querySelector("#result"); 
+    let palindromeResult = document.querySelector("#palindromeResult"); 
     if (phrase.palindrome()) {
-        palindromeResult.innerHTML = `"${phrase.content}" is a palindrome!`; 
+        palindromeResult.innerHTML = `"<strong>${phrase.content}</strong>" is a palindrome!`; 
     } else {
         palindromeResult.innerHTML = `"${phrase.content}" is NOT a palindrome.`; 
     }; 
@@ -16,8 +17,7 @@ function palindromeTester() {
 document.addEventListener("DOMContentLoaded",function () {
     let form = document.querySelector("#palindromeTester"); 
     form.addEventListener("submit", function() {
-        palindromeTester(); 
-        return false;
+        palindromeTester(event); 
     }); 
 });  
 
